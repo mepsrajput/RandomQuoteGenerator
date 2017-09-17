@@ -98,7 +98,7 @@ function quote(){
         },
         dataType: 'json',
         success: function(data) {
-            //$('body').fadeIn(60);
+            //$('body').fadeIn(30);
             $('.quote-text>span').text(data.quote);
             $('.quote-author>span').text(data.author);
             $('#tweet-quote').attr("href","https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text="+ '"' + data.quote + '"' + " - " + data.author );
