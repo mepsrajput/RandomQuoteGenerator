@@ -9,14 +9,28 @@ div {
   position:relative;
   z-index: 2;
 }
-
-body {
-  background-color: red;
-  color: #333;
-  font-family: 'Raleway', sans-serif;
-  font-weight:400;
+ 
+.qb {
+	height: 350px;
+	margin: 100px auto;
+	
+}
+.quote-box {
+	width: 300px;
+	margin: 0 auto;
+	background-color: white;
+	padding: 15px;
 }
 
-.qb {
-	height: 250px;
-	margin: 250px auto;
+#tweet-quote {
+		background-color: rgb(231, 76, 60);
+		color: white;
+		padding: 5px auto;
+		margin: 10px;
+
+}
+
+
+
+
+
