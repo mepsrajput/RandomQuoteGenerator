@@ -34,6 +34,7 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
 <style>
+
 body{
 	background-color: #0f7f7f;
 	color: #333;
@@ -41,34 +42,34 @@ body{
 	font-weight:400;
 	overflow:hidden;
 }
+
 </style>
 		
 </head>
 
 
 <body>
-
-
 	
 	<div class="row text-center main">
-		<div class="col-lg-12">
+		<div class="col-lg-12 col-lg-12">
 			<div class="content">
 				<div class="quote-box">
 					
 					<div class="quote-text">	
 						<i class="fa fa-quote-left"> </i>
 						<span id="text"></span>
+						<i class="fa fa-quote-right"> </i>
 					</div>
 				
 					<div class="quote-author">
-					- <span id="author"></span>
+					~ <span id="author"></span>
 					</div>
 			
-					<a class="button text-left" id="tweet-quote" title="Tweet this quote!" target="_blank">
+					<a class="button text-left" id="tweet-quote" title="Tweet this!" target="_blank">
 					<i class="fa fa-twitter text-left"></i>
 					</a>
 	
-					<button class="button text-right" id="new-quote">New quote</button>
+					<button class="button text-right" title="New quote!" id="new-quote">New quote</button>
 				</div>
 				
 				<div class="footer text-right"> by <a href="http://mepsrajput.github.io/">Pradeep Singh</a>
@@ -83,72 +84,36 @@ body{
 
 <script>
 
-function inIframe () { try { return window.self !== window.top; } catch (e) { return true; } }
-
-var colors = ['#16a085', '#27ae60', '#2c3e50', '#f39c12', '#e74c3c', '#9b59b6', '#FB6964', '#342224', "#472E32", "#BDBB99", "#77B1A9", "#73A857"];
-var currentQuote = '', currentAuthor = '';
-function openURL(url){
-  window.open(url, 'Share', 'width=550, height=400, toolbar=0, scrollbars=1 ,location=0 ,statusbar=0,menubar=0, resizable=0');
-}
-function getQuote() {
-  $.ajax({
-    headers: {
-      "X-Mashape-Key": "OivH71yd3tmshl9YKzFH7BTzBVRQp1RaKLajsnafgL2aPsfP9V",
-      Accept: "application/json",
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
-    url: 'https://andruxnet-random-famous-quotes.p.mashape.com/cat=',
-    success: function(r) {
-      if (typeof r === 'string') {
-       r = JSON.parse(r); 
-      }
-      currentQuote = r.quote;
-      currentAuthor = r.author;
-      if(inIframe())
-      {
-        $('#tweet-quote').attr('href', 'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent('"' + currentQuote + '" ' + currentAuthor));
-      }
-      $(".quote-text").animate({
-          opacity: 0
-        }, 500,
-        function() {
-          $(this).animate({
-            opacity: 1
-          }, 500);
-          $('#text').text(r.quote);
-        });
-
-      $(".quote-author").animate({
-          opacity: 0
-        }, 500,
-        function() {
-          $(this).animate({
-            opacity: 1
-          }, 500);
-          $('#author').html(r.author);
-        });
-
-      var color = Math.floor(Math.random() * colors.length);
-      $("html body").animate({
-        backgroundColor: colors[color],
-        color: colors[color]
-      }, 1000);
-      $(".button").animate({
-        backgroundColor: colors[color]
-      }, 1000);
-    }
-  });
-}
 $(document).ready(function() {
-  getQuote();
-  $('#new-quote').on('click', getQuote);
-  $('#tweet-quote').on('click', function() {
-    if(!inIframe()) {
-      openURL('https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + encodeURIComponent('"' + currentQuote + '" ' + currentAuthor));
-    }
-  });
-  
+
+function quote(){
+    $.ajax({
+        url: 'https://andruxnet-random-famous-quotes.p.mashape.com/',
+        type: 'post',
+        data: {
+
+        },
+        headers: {
+            'X-Mashape-Key': '1Xuhcdh7NsmshWXJ9mNNa3ChMDpvp1fIoBNjsnLnPJiwUxrMGO'
+        },
+        dataType: 'json',
+        success: function(data) {
+            //$('body').fadeIn(60);
+            $('.quote-text>span').text(data.quote);
+            $('.quote-author>span').text(data.author);
+            $('#tweet-quote').attr("href","https://twitter.com/intent/tweet?ref_src=twsrc%5Etfw&text="+ '"' + data.quote + '"' + " - " + data.author );
+        }
+    });
+}
+
+    $('#new-quote').click(function(e) {
+      e.preventDefault();
+       quote();
+
+
 });
+  quote();
+  });
 </script>
 </body>
 
