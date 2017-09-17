@@ -10,14 +10,12 @@ div {
   z-index: 2;
 }
  
-.qb {
-	height: 350px;
-	margin: 100px auto;
-	
-}
 .quote-box {
 	width: 300px;
-	margin: 0 auto;
+	height: 140px;
+	margin-top: 250px;
+	margin-left: auto;
+	margin-right: auto;
 	background-color: white;
 	padding: 15px;
 }
