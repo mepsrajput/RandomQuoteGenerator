@@ -11,8 +11,11 @@
 }
 
 .quote-author {
-	margin-bottom: 10px;
 	text-align: right;
+	clear:both;
+	padding-bottom:12px;
+	padding-top:12px;
+
 }
 #tweet-quote {
 		background-color: #0b4444;
@@ -35,7 +38,6 @@
 }
 
 .button {
-	
 	    display:block;
 		border:none;
 		border-radius:3px;
