@@ -1,6 +1,4 @@
 
- 
-
 .quote-box {
 	width: 400px;
 	margin:12% auto auto auto;
@@ -77,3 +75,18 @@ a:link, a:visited, a:hover, a:active{
 }
 
 
+@media only screen and (max-width: 500px) {
+
+	.quote-box {
+	width: 340px;
+	margin:25% auto auto auto;
+	padding: 20px;
+	font-size: 18px;
+	}
+	
+	.footer {
+	width: 340px;
+	margin: 25px auto auto auto;
+	text-align: center;
+	}
+}
